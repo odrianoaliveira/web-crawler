@@ -4,15 +4,15 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func createTmpFile(t *testing.T, content string) string {
 	tmp := t.TempDir()
 	file := filepath.Join(tmp, "urls.txt")
 	err := os.WriteFile(file, []byte(content), 0644)
-	if err != nil {
-		t.Fatalf("failed to create temp file: %v", err)
-	}
+	assert.NoError(t, err, "failed to create temp file")
 	return file
 }
 
@@ -24,10 +24,10 @@ https://golang.org
 https://news.ycombinator.com
 	`
 	file := createTmpFile(t, content)
+
 	urls, err := ReadURLs(file)
-	if err != nil {
-		t.Fatalf("expected no error, got %v", err)
-	}
+	assert.NoError(t, err)
+	assert.Len(t, urls, 3)
 
 	expected := []string{
 		"https://example.com",
@@ -35,38 +35,19 @@ https://news.ycombinator.com
 		"https://news.ycombinator.com",
 	}
 
-	if len(urls) != len(expected) {
-		t.Fatalf("expected %d URLs, got %d", len(expected), len(urls))
-	}
-
-	for i, url := range urls {
-		if url != expected[i] {
-			t.Errorf("expected %s, got %s", expected[i], url)
-		}
-	}
+	assert.Equal(t, expected, urls)
 }
 
 func TestReadURLs_EmptyFile(t *testing.T) {
-	content := ""
-	file := createTmpFile(t, content)
-	urls, err := ReadURLs(file)
-	if err != nil {
-		t.Fatalf("expected no error, got %v", err)
-	}
+	file := createTmpFile(t, "")
 
-	if len(urls) != 0 {
-		t.Fatalf("expected 0 URLs, got %d", len(urls))
-	}
+	urls, err := ReadURLs(file)
+	assert.NoError(t, err)
+	assert.Empty(t, urls)
 }
 
 func TestReadURLs_FileNotFound(t *testing.T) {
-	file := "nonexistent.txt"
-	urls, err := ReadURLs(file)
-	if err == nil {
-		t.Fatalf("expected error, got nil")
-	}
-
-	if urls != nil {
-		t.Fatalf("expected nil URLs, got %v", urls)
-	}
+	urls, err := ReadURLs("nonexistent.txt")
+	assert.Error(t, err)
+	assert.Nil(t, urls)
 }
