@@ -13,7 +13,7 @@ A web crawler written in Go. It starts with a list of seed URLs, downloads and p
 - Store structured data in MongoDB
 - Built using Go
 
-
+---
 
 ## 🚀 Getting Started
 
@@ -22,7 +22,7 @@ A web crawler written in Go. It starts with a list of seed URLs, downloads and p
 - [Go 1.20+](https://golang.org/doc/install)
 - [MongoDB](https://www.mongodb.com/try/download/community)
 
-### Clone and Build
+### 🧬🔧 Clone and Build
 
 ```bash
 git clone https://github.com/yourusername/web-crawler.git
@@ -31,13 +31,13 @@ go build -o crawler ./cmd/crawler
 
 ```
 
-### Run the Crawler
+### 🏃‍♂️🕷️ Run the Crawler
 
 ```bash
 ./crawler -seed-url urls.txt
 ```
 
-### Configuration
+### ⚙️ Configuration
 Edit configs/config.yaml to set the MongoDB connection and other runtime parameters:
 
 ```yaml
@@ -46,7 +46,7 @@ database: "crawler"
 collection: "pages"
 ```
 
-### Running Tests
+### 🧪 Running Tests
 
 ```
 go test ./...
