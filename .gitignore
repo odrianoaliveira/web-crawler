@@ -9,7 +9,6 @@
 
 # Output of `go build`
 /cmd/**/crawler
-/web-crawler
 
 # Vendor directory (if you use `go mod vendor`)
 /vendor/
@@ -34,3 +33,4 @@ Thumbs.db
 # Configuration / secrets (if any)
 configs/*.yaml
 .env
+/crawler
