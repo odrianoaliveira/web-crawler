@@ -9,7 +9,7 @@
 
 # Output of `go build`
 /cmd/**/crawler
-/crawler
+/web-crawler
 
 # Vendor directory (if you use `go mod vendor`)
 /vendor/
