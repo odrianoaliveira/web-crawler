@@ -1,0 +1,36 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of `go build`
+/cmd/**/crawler
+/crawler
+
+# Vendor directory (if you use `go mod vendor`)
+/vendor/
+
+# Dependency directories (Go Modules)
+/go.sum
+
+# IDE/editor config
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Configuration / secrets (if any)
+configs/*.yaml
+.env
