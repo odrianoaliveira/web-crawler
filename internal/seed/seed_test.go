@@ -45,3 +45,28 @@ https://news.ycombinator.com
 		}
 	}
 }
+
+func TestReadURLs_EmptyFile(t *testing.T) {
+	content := ""
+	file := createTmpFile(t, content)
+	urls, err := ReadURLs(file)
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	if len(urls) != 0 {
+		t.Fatalf("expected 0 URLs, got %d", len(urls))
+	}
+}
+
+func TestReadURLs_FileNotFound(t *testing.T) {
+	file := "nonexistent.txt"
+	urls, err := ReadURLs(file)
+	if err == nil {
+		t.Fatalf("expected error, got nil")
+	}
+
+	if urls != nil {
+		t.Fatalf("expected nil URLs, got %v", urls)
+	}
+}
