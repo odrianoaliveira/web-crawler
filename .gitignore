@@ -7,9 +7,6 @@
 *.test
 *.out
 
-# Output of `go build`
-/cmd/**/crawler
-
 # Vendor directory (if you use `go mod vendor`)
 /vendor/
 
